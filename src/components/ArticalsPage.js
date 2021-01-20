@@ -7,7 +7,13 @@ export const ArticalsPage  = ({articals}) =>{
      <>
       {articals.map((artical,key)=>(
       <>
-      <Link className="decor" key ={key} to={`/artical/${artical.bookName}`}>
+      <Link className="decor" key ={key} 
+      // to={`/artical/${artical.bookName}`
+      to={{
+        pathname: "/artical/${artical.bookName}",
+        state: artical,
+      }
+      }>
       <h2>{artical.bookName}</h2>
     <p>{artical.aptNotes.substring(0,50)}...</p>
       </Link>

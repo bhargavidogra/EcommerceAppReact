@@ -14,6 +14,7 @@ import { ArticalPage } from "./Pages/ArticalPage";
 import { NotFoundPage } from "./Pages/NotFoundPage";
 import { BuyNow } from "./components/BuyNow";
 import { NavBar } from "./NavBar";
+import {MyOrder} from './components/MyOrder'
 
 ReactDOM.render(
     <>
@@ -26,6 +27,7 @@ ReactDOM.render(
                 <Route path="/cart-list" component={ArticalsListView} />
                 <Route path="/artical/:name" component={ArticalPage} />
                 <Route path="/buynow/:name" component={BuyNow} />
+                <Route path="/view-myorder" component={MyOrder} />
                 <Route component={NotFoundPage} />
                 </Switch>
               </div>

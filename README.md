@@ -8,7 +8,7 @@ This repository has branche for assignment solution. You can use the branch pop 
 
 ## Branches
 
-The branches are structured . The `master` branch is the base branch. the ecommerce branch has the assignment solution
+The branches are structured . The `master` branch is the base branch. the `ecommerce` branch has the assignment solution
 
 ## Installing
 

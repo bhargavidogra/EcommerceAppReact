@@ -1,8 +1,16 @@
+import { isInteger } from 'lodash';
 import React from 'react';
 import { FaArrowCircleRight,FaCartPlus,FaBook } from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 
 export const ListItems =(props)=>{
+
+  let grand_total=0;
+  console.log(props.appointments);
+  grand_total=props.appointments.reduce(function(tot, item) { 
+    return tot + parseInt(item.price)
+    },0);
+  console.log(grand_total);
     return (
       <div className="appointment-list item-list mb-3">
         {props.appointments.map(item => (
@@ -35,11 +43,18 @@ export const ListItems =(props)=>{
                 className="pet-delete btn btn-sm btn-danger"
               >
                 <FaArrowCircleRight />
-                <Link  to={`/buynow/${item.bookName}`}> Buy Now</Link>  
+                <Link 
+                //  to={`/buynow/${item.bookName}`}
+                to={{
+                  pathname: `/buynow/${item.bookName}`,
+                  state: item,
+                }}
+                > View Detail</Link>  
               </button>
               </div>
               <div className="mr-3">
-              <button
+                { props.isCart? 
+                <button
                 className="pet-delete btn btn-sm btn-info"
                 onClick={() =>{ 
                   return props.deleteAppointment(item)}}
@@ -47,7 +62,9 @@ export const ListItems =(props)=>{
                 
                 <FaCartPlus />
                 Add To Cart
-              </button>
+              </button>:
+              null}
+              
             </div>
               </div>
 

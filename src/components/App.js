@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-
 import AddBooks from './AddBooks';
 import SearchBooks from './SearchBooks';
 import {ListItems} from './ListItems';
+import { Link } from 'react-router-dom';
 
-import { findIndex, without } from 'lodash';
+import { findIndex, noop, without } from 'lodash';
 
 export class App extends Component {
   constructor() {
@@ -174,6 +174,20 @@ const viewbookstore = "View Book Store";
                   onClick={this.toggleCartDisplay} >
                    {this.state.cartDisplay?viewbookstore:viewCart}
                 </button>
+                { this.state.cartDisplay?
+                <button className="apt-addheading card-header bg-primary text-white cartview"
+                style={{marginLeft:'10px'}}
+                onClick={this.toggleCartDisplay} >
+                 <Link
+      to={{
+        pathname: "/view-myorder",
+        state: cartItemslist,
+      }}
+      style={{ color: 'white'}}
+    >Buy Now</Link>
+              </button>:null 
+                }
+                
                 <SearchBooks
                   orderBy={this.state.orderBy}
                   orderDir={this.state.orderDir}
@@ -194,6 +208,7 @@ const viewbookstore = "View Book Store";
                 deleteAppointment={this.deleteAppointment}
                 updateInfo={this.updateInfo}
                 updateBook={this.updateBook}
+                isCart={true}
               />
   }
               </div>

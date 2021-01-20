@@ -1,14 +1,18 @@
 import React from 'react';
 import {articalcontent} from '../Pages/Artical-Content';
 import '../css/BuyNow.css';
+import { Link } from 'react-router-dom';
 
-export const BuyNow=({match}) =>{
-    const name = match.params.name;
+
+export const BuyNow=(props) =>{
+    const name = props.match.params.name;
+    
     const artical =  articalcontent.find(artical=>artical.bookName === name);
+    console.log(props)
     if(!artical) return <h1>Artical does not exist!</h1>
     return (
     <div>
-        <h1>Your Order</h1>
+        <h1>Book Details</h1>
     <br/>
     <article>
 
@@ -23,12 +27,22 @@ export const BuyNow=({match}) =>{
 
           <div className="text">
             
-            <div className="fab" onClick={()=>alert('redirecting to payment Gateway')}>&#43;Pay Now</div>
+            <div className="fab" 
+            // onClick={()=>alert('redirecting to payment Gateway')}
+            >&#43;
+            <Link
+      to={{
+        pathname: "/view-myorder",
+        state: props.location.state,
+      }}
+      style={{ color: 'white'}}
+    >Buy Now</Link>
+            </div>
 
             <h3>{artical.bookName}</h3>
             <p>{artical.aptNotes}</p>
             <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.</p>
-             <h4>Price : {artical.price}</h4>
+             <h4>Price : ${artical.price}</h4>
           </div>
 
         </div>
